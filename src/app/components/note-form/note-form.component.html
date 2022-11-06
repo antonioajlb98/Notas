@@ -1,0 +1,19 @@
+<div style="padding: 30px 50px;">
+  <div  style="background-color:rgb(132, 132, 177); padding:20px 30px; border-radius:10px; border:1px solid black">
+    <form [formGroup]="note_form">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="title">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="description"></textarea>
+      </div>
+    </form>
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="saveNoteFn()" *ngIf="noteToEditInput.id==-1">Guardar</button>
+      <button class="btn btn-primary" (click)="editNoteFn()" *ngIf="noteToEditInput.id!=-1">Editar</button>
+    </div>
+  </div>
+</div>
+
