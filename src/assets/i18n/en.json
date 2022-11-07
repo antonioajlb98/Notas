@@ -2,10 +2,10 @@
     "Descripcion":"Description",
     "Titulo":"Tittle",
     "Editar":"Edit",
-    "Cerrar Sesion":"Sign Out",
+    "Cerrar Sesion":"LogOut",
     "Configuracion":"Settings",
     "Inicio":"Home",
     "Notas":"Notes",
     "Guardar":"Save",
-    "Informacion":"Information"
+    "Sobre mi":"About"
 }

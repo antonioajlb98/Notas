@@ -33,14 +33,18 @@
               <a class="nav-link active" aria-current="page" routerLink="/home">{{"Inicio" | translate}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" routerLink="/config">{{"Configuracion" | translate}}</a>
+              <a class="nav-link active" routerLink="/config">{{"Sobre mi" | translate}}</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" routerLink="/config">{{"Informacion" | translate}}</a>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-danger" (click)="cerrarSesion()">{{"Cerrar Sesion" | translate}}</button>
-            </li>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                {{this.loginService.user!.name}}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li class="nav-item">
+                  <button class="btn btn-danger" (click)="cerrarSesion()">{{"Cerrar Sesion" | translate}}</button>
+                </li>
+              </ul>
+            </div>
           </ul>
         </span>
       </div>
