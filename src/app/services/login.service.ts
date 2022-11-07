@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
 import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
 import { Router } from '@angular/router';
+import { LocalstorageService } from './localstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,15 @@ export class LoginService {
   originalPath!:string;
 
   constructor(private authService: SocialAuthService,
-    private router:Router) {
+    private router:Router,private local: LocalstorageService) {
 
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
       if(this.loggedIn){
-        localStorage.setItem('usuario',JSON.stringify(this.user));
-        
+        this.local.remove('user');
+        this.local.set('user',user);
+        this.refreshToken();
         if(this.originalPath){
           this.router.navigate([this.originalPath]);
           this.originalPath='';
@@ -42,19 +44,7 @@ export class LoginService {
     return this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }*/
   async signOut(): Promise<void> {
-    localStorage.removeItem('usuario');
     return await this.authService.signOut();
     
-  }
-  getFromSLocalStorage():boolean{
-    let Almacenado=false;
-    let Usuario:any;
-    if(localStorage.getItem('usuario')){
-      this.user=JSON.parse(localStorage.getItem('usuario')!);
-      this.authService.signIn(this.user.provider);
-      this.loggedIn=true;
-      Almacenado=true;
-    }
-    return Almacenado;
   }
 }

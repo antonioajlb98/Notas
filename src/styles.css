@@ -3,3 +3,12 @@ html,body{
     height:100% ;
     margin:0;
 }
+#credential_picker_container{
+    display: none;
+}
+#animated-container{
+    display: none;
+}
+#container{
+    display: none;
+}
