@@ -18,6 +18,15 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
 import { environment } from 'src/environments/environment';
 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { TranslateLoader,TranslateModule } from '@ngx-translate/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+export function HttpLoaderFactory(http:HttpClient){
+  return new TranslateHttpLoader(http,'./assets/i18n/','.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +43,21 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     SocialLoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide:TranslateLoader,
+        useFactory:HttpLoaderFactory,
+        deps:[HttpClient]
+      }
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     {
