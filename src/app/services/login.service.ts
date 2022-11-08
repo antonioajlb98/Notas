@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
 import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
 import { Router } from '@angular/router';
-import { LocalstorageService } from './localstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +13,14 @@ export class LoginService {
   originalPath!:string;
 
   constructor(private authService: SocialAuthService,
-    private router:Router,private local: LocalstorageService) {
+    private router:Router) {
 
     this.isAuth();
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
       if(this.loggedIn){
-        this.local.set('user',user);
+        localStorage.setItem('user', JSON.stringify(this.user));
         if(this.originalPath){
           this.router.navigate([this.originalPath]);
           this.originalPath='';
@@ -34,7 +33,7 @@ export class LoginService {
    }
   isAuth():boolean{
     if(!this.checked){
-      this.user = JSON.parse(this.local.get('user'));
+      this.user = JSON.parse(localStorage.getItem('user')!);
       this.checked = true;
       this.loggedIn = (this.user != null);
     }
@@ -49,10 +48,8 @@ export class LoginService {
   }*/
   async signOut(): Promise<void> {
     this.user = null as any;
-    this.local.clear('user');
+    localStorage.removeItem('user');
     this.checked=false;
-    console.log(this.local.get('user'));
-    //this.router.navigate(['login'])
     return new Promise(async (resolve,reject)=>{
       try{
          await this.authService.signOut();
