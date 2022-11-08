@@ -53,10 +53,8 @@ export class LoginService {
     return new Promise(async (resolve,reject)=>{
       try{
          await this.authService.signOut();
-         console.log("AQUI NOO OOOO")
          resolve();
       }catch(e){
-        console.log("AQUI SI")
         resolve();
       }
     })

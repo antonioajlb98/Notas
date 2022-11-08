@@ -7,5 +7,18 @@
     "Inicio":"Home",
     "Notas":"Notes",
     "Guardar":"Save",
-    "Sobre mi":"About"
+    "Sobre mi":"About",
+    "Contacta Conmigo":"Contact Me",
+    "Acerca de la Web Notas":"About Notes Website",
+    "Desarrollador Multiplataforma":"FullStack Developer",
+    "Introduce tus datos":"Enter your Data",
+    "Nombre":"Name",
+    "Email":"Email",
+    "Motivo del Contacto":"Reason for Contact",
+    "Informacion":"Information",
+    "Consultas":"Queries",
+    "Enviar":"Send",
+    "Bienvenido a la Web Notas":"Welcome to Notes Web"
+
+
 }
