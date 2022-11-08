@@ -15,12 +15,8 @@ export class LoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let login = false;
-      let user:SocialUser = JSON.parse(this.localS.get('user'));
-      if(user!=null){
-        this.loginS.user = user;
-        this.loginS.refreshToken();
-        login=true;
-      }
+     
+      login=this.loginS.isAuth();
 
       let result=false;
       if(!login){

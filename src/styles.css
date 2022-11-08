@@ -6,6 +6,9 @@ html,body{
 #credential_picker_container{
     display: none;
 }
+#credential_picker_iframe{
+    display: none;
+}
 #animated-container{
     display: none;
 }

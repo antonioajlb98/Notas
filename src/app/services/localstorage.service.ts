@@ -32,9 +32,9 @@ export class LocalstorageService {
       }
     }
 
-    clear(){
+    clear(obj:any){
       try {
-        localStorage.clear();
+        localStorage.removeItem(obj)
       }catch(e) {
         console.log(e);
       }

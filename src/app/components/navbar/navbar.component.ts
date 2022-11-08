@@ -15,9 +15,18 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  cerrarSesion(){
+  async cerrarSesion(){
     this.localS.remove('user');
-    this.loginService.signOut();
+    try{
+     await  this.loginService.signOut();
+    }catch(err){
+      console.log("QUE PASA")
+    }finally{
+      console.log("OOOOO")
+     
+    }
+    console.log("OYEEEEE")
+    this.localS.remove('user');
     this.router.navigate(['login'])
   }
   cambiarEspanol(){

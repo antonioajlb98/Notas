@@ -27,8 +27,6 @@ export class NoteFormComponent implements OnInit {
   ngOnChanges($changes:any){
     if($changes.noteToEditInput && $changes.noteToEditInput.currentValue){
       this.note_form.patchValue($changes.noteToEditInput.currentValue);
-      console.log($changes.noteToEditInput.currentValue);
-      
     }
   }
 
